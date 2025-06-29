@@ -3,9 +3,10 @@ server:
   ssl: false   # Should we use SSL?  If you do, change the port to 443
   title: Massyn Nginx Web Gateway
 sites:
-  title: MRTG
-  description: The Multi-Router Traffic Graphing tool
-  location: /var/www/html/mrtg
+  mrtg:
+    title: MRTG
+    description: The Multi-Router Traffic Graphing tool
+    location: /var/www/html/mrtg
 reverse:
   router:
     title: Router

@@ -1,5 +1,5 @@
 #!/bin/sh
-python -m pip install -r requirements.txt --break-system-packages.
+python -m pip install -r requirements.txt --break-system-packages
 python compile.py
 
 chown -R phil:www-data /usr/share/nginx/html/
