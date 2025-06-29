@@ -6,7 +6,7 @@ sites:
   mrtg:
     title: MRTG
     description: The Multi-Router Traffic Graphing tool
-    location: /var/www/html/mrtg
+    location: /var/www/html/mrtg/
 reverse:
   router:
     title: Router
@@ -14,7 +14,7 @@ reverse:
     location: http://192.168.0.1
   ollama:
     title: ollama
-    location: http://192.168.0.224:8080
+    location: http://192.168.0.5:8080
 # groups:
 #   - phil
 # users:
