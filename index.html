@@ -201,20 +201,27 @@
 
   <!-- ===== Features ===== -->
   <section id="features" class="features">
-    {% for target in config['target'] %}
+    {% for target in config['reverse'] %}
         <a href="/{{ target }}" class="feature-card-link">
 
         <div class="feature-card">
-        <h3>{{ config['target'][target]['title'] }}</h3>
-        <p>{{ config['target'][target]['description'] }}</p>
+        <h3>{{ config['reverse'][target]['title'] }}</h3>
+        <p>{{ config['reverse'][target]['description'] }}</p>
         </div>
         </a>
     {% endfor %}
 
-    <div class="feature-card">
-      <h3>Advanced Threat Protection</h3>
-      <p>AI‑driven sandbox analysis and inline blocking keep emerging malware out of your network.</p>
-    </div>
+    {% for target in config['sites'] %}
+        <a href="/{{ target }}" class="feature-card-link">
+
+        <div class="feature-card">
+        <h3>{{ config['sites'][target]['title'] }}</h3>
+        <p>{{ config['sites'][target]['description'] }}</p>
+        </div>
+        </a>
+    {% endfor %}
+
+    
     
   </section>
 
