@@ -1,0 +1,16 @@
+server:
+  port: 80    # What port should the gateway we listening on
+  ssl: false   # Should we use SSL?  If you do, change the port to 443
+  title: Massyn Nginx Web Gateway
+target:
+  mrtg:
+    title: MRTG
+    description: The Multi-Router Traffic Graphing tool
+    location: http://192.168.0.10/mrtg
+# groups:
+#   - phil
+# users:
+#   phil: password123
+# groups:
+#   admin:
+#     - phil

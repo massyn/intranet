@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ config['server']['title'] }}</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #0d1b2a;
+      --bg-light: #1b263b;
+      --accent-primary: #00d4ff;
+      --accent-secondary: #00ff9d;
+      --text-light: #f0f3fa;
+      --text-muted: #cbd5e1;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: var(--bg-dark);
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    /* ---------------- Header ---------------- */
+    header {
+      padding: 1rem 2rem;
+      background: var(--bg-light);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      color: var(--accent-primary);
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      color: var(--text-light);
+      margin-left: 1.5rem;
+      text-decoration: none;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: var(--accent-primary);
+      transition: 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* ---------------- Hero ---------------- */
+    .hero {
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, #112240 0%, #0d1b2a 50%, #001219 100%);
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--accent-primary);
+    }
+
+    .hero p {
+      max-width: 700px;
+      font-size: 1.2rem;
+      color: var(--text-muted);
+    }
+
+    .cta-btn {
+      margin-top: 2rem;
+      padding: 0.9rem 2.5rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: var(--radius);
+      background: var(--accent-primary);
+      color: var(--bg-dark);
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(0, 212, 255, 0.3);
+      transition: 0.3s;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 212, 255, 0.5);
+    }
+
+    /* ---------------- Features ---------------- */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      padding: 4rem 2rem;
+      background: var(--bg-light);
+    }
+
+    .feature-card {
+      background: var(--bg-dark);
+      padding: 2rem;
+      border-radius: var(--radius);
+      border: 1px solid rgba(0, 255, 157, 0.2);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-secondary);
+    }
+
+    .feature-card h3 {
+      margin-bottom: 1rem;
+      color: var(--accent-secondary);
+    }
+
+    /* ---------------- Pricing Section (re-uses hero styles) ---------------- */
+    #pricing.hero {
+      background: #001219;
+    }
+
+    /* ---------------- Footer ---------------- */
+    footer {
+      background: #000814;
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: var(--accent-primary);
+      text-decoration: none;
+    }
+
+    .feature-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.feature-card-link .feature-card {
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-card-link:hover .feature-card {
+  transform: translateY(-5px);
+  border-color: var(--accent-secondary);
+  box-shadow: 0 10px 25px rgba(0, 255, 157, 0.2);
+}
+
+  </style>
+</head>
+<body>
+  <!-- ===== Header ===== -->
+  <header>
+    <h1>{{ config['server']['title'] }}</h1>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+      <a href="#docs">Docs</a>
+    </nav>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <h2>Secure Internet Gateway</h2>
+    <p>Zero‑trust access, real‑time threat intelligence, and lightning‑fast performance—all delivered at the edge. Protect your users and workloads wherever they connect.</p>
+    <button class="cta-btn">Get Started</button>
+  </section>
+
+  <!-- ===== Features ===== -->
+  <section id="features" class="features">
+    {% for target in config['target'] %}
+        <a href="/{{ target }}" class="feature-card-link">
+
+        <div class="feature-card">
+        <h3>{{ config['target'][target]['title'] }}</h3>
+        <p>{{ config['target'][target]['description'] }}</p>
+        </div>
+        </a>
+    {% endfor %}
+
+    <div class="feature-card">
+      <h3>Advanced Threat Protection</h3>
+      <p>AI‑driven sandbox analysis and inline blocking keep emerging malware out of your network.</p>
+    </div>
+    
+  </section>
+
+  <!-- ===== Pricing ===== -->
+  <section id="pricing" class="hero">
+    <h2>Simple, Transparent Pricing</h2>
+    <p>Pay only for what you use—no hidden fees, no contracts.</p>
+    <button class="cta-btn">View Plans</button>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer id="contact">
+    <p>&copy; 2025 FortiShield Security Limited. All rights reserved. <a href="mailto:sales@fortishield.io">sales@fortishield.io</a></p>
+  </footer>
+</body>
+</html>
